@@ -1,0 +1,112 @@
+-- Adapted from JetBrains' IslandSchemeDark.xml and ManyIslandsDark.theme.json
+-- bundled with GoLand 2026.1 (IntelliJ Platform, Apache-2.0).
+-- https://github.com/JetBrains/intellij-community/tree/master/platform/platform-resources/src/themes/islands
+local M = {}
+
+M.base_30 = {
+  white = "#d1d3d9",
+  black = "#191a1c",
+  darker_black = "#212326",
+  black2 = "#26282c",
+  one_bg = "#2b2d30",
+  one_bg2 = "#33353b",
+  one_bg3 = "#40434a",
+  grey = "#4b5059",
+  grey_fg = "#7a7e85",
+  grey_fg2 = "#8b8e94",
+  light_grey = "#9fa2a8",
+  red = "#f75464",
+  baby_pink = "#ff9b9f",
+  pink = "#c77dbb",
+  line = "#33353b",
+  green = "#6aab73",
+  vibrant_green = "#73bd79",
+  nord_blue = "#538af9",
+  blue = "#56a8f5",
+  yellow = "#e4ad5f",
+  sun = "#f4cd9a",
+  purple = "#a894f6",
+  dark_purple = "#967bef",
+  teal = "#2aacb8",
+  orange = "#cf8e6d",
+  cyan = "#6aaea6",
+  statusline_bg = "#26282c",
+  lightbg = "#33353b",
+  pmenu_bg = "#2a4371",
+  folder_bg = "#9fa2a8",
+}
+
+M.base_16 = {
+  base00 = "#191a1c",
+  base01 = "#212326",
+  base02 = "#2a4371",
+  base03 = "#40434a",
+  base04 = "#7a7e85",
+  base05 = "#bcbec4",
+  base06 = "#d1d3d9",
+  base07 = "#f7f8f9",
+  base08 = "#c77dbb",
+  base09 = "#2aacb8",
+  base0A = "#bcbec4",
+  base0B = "#6aab73",
+  base0C = "#cf8e6d",
+  base0D = "#56a8f5",
+  base0E = "#cf8e6d",
+  base0F = "#bcbec4",
+}
+
+M.type = "dark"
+M.polish_hl = {
+  defaults = {
+    CursorLine = { bg = "#1f2024" },
+    CursorLineNr = { fg = "#a1a3ab" },
+    NormalFloat = { fg = "#d1d3d9", bg = "#26282c" },
+    FloatBorder = { fg = "#40434a", bg = "#26282c" },
+    Pmenu = { fg = "#d1d3d9", bg = "#26282c" },
+    PmenuSel = { fg = "#ffffff", bg = "#2a4371" },
+    Error = { fg = "#f75464" },
+    ErrorMsg = { fg = "#f75464" },
+    WarningMsg = { fg = "#e4ad5f" },
+  },
+  syntax = {
+    Comment = { fg = "#7a7e85" },
+    Identifier = { fg = "#bcbec4" },
+    Boolean = { fg = "#cf8e6d" },
+    Constant = { fg = "#c77dbb" },
+    Type = { fg = "#bcbec4" },
+    Include = { fg = "#cf8e6d" },
+  },
+  treesitter = {
+    ["@variable.builtin"] = { fg = "#cf8e6d" },
+    ["@variable.parameter"] = { fg = "#bcbec4" },
+    ["@variable.member"] = { fg = "#c77dbb" },
+    ["@variable.member.key"] = { fg = "#c77dbb" },
+    ["@property"] = { fg = "#c77dbb" },
+    ["@module"] = { fg = "#bcbec4" },
+    ["@constant"] = { fg = "#c77dbb" },
+    ["@constant.builtin"] = { fg = "#cf8e6d" },
+    ["@boolean"] = { fg = "#cf8e6d" },
+    ["@type"] = { fg = "#bcbec4" },
+    ["@type.builtin"] = { fg = "#cf8e6d" },
+    ["@constructor"] = { fg = "#bcbec4" },
+    ["@keyword.exception"] = { fg = "#cf8e6d" },
+    ["@keyword.repeat"] = { fg = "#cf8e6d" },
+    ["@keyword.storage"] = { fg = "#cf8e6d" },
+    ["@keyword.directive"] = { fg = "#cf8e6d" },
+    ["@character"] = { fg = "#6aab73" },
+  },
+  nvimtree = {
+    NvimTreeCursorLine = { bg = "#2a4371" },
+    NvimTreeGitDirty = { fg = "#70aeff" },
+    NvimTreeGitNew = { fg = "#73bd79" },
+  },
+  telescope = {
+    TelescopeNormal = { fg = "#d1d3d9", bg = "#26282c" },
+    TelescopeBorder = { fg = "#40434a", bg = "#26282c" },
+    TelescopeSelection = { fg = "#d1d3d9", bg = "#2a4371" },
+    TelescopeMatching = { fg = "#71a1fe", bold = true },
+    TelescopePromptPrefix = { fg = "#71a1fe", bg = "#26282c" },
+  },
+}
+
+return require("base46").override_theme(M, "islands-dark")
