@@ -31,6 +31,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local servers = { "html", "cssls", "lua_ls", "gopls" }
+vim.lsp.config("gopls", {
+  -- NvChad's global on_init disables semantic tokens. Keep them for Go so
+  -- package qualifiers can be distinguished from ordinary variable receivers.
+  on_init = function() end,
+  settings = {
+    gopls = { semanticTokens = true },
+  },
+})
 vim.lsp.enable(servers)
 
 -- read :h vim.lsp.config for changing options of lsp servers
