@@ -1,5 +1,29 @@
 return {
   {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod", cmd = "DB" },
+      {
+        "kristijanhusak/vim-dadbod-completion",
+        dependencies = { "hrsh7th/nvim-cmp" },
+        ft = { "sql", "mysql", "plsql" },
+        config = function()
+          require("configs.dadbod").completion()
+        end,
+      },
+    },
+    cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer", "DBUILastQueryInfo" },
+    ft = { "sql", "mysql", "plsql" },
+    keys = {
+      { "<leader>Bu", "<cmd>DBUIToggle<CR>", desc = "Database panel" },
+      { "<leader>Ba", "<cmd>DBUIAddConnection<CR>", desc = "Database add connection" },
+      { "<leader>Bf", "<cmd>DBUIFindBuffer<CR>", desc = "Database associate/find SQL buffer" },
+    },
+    init = function()
+      require("configs.dadbod").setup()
+    end,
+  },
+  {
     "nvim-tree/nvim-tree.lua",
     opts = {
       view = { width = 40 },
@@ -108,7 +132,7 @@ return {
     config = function()
       require("neotest").setup {
         adapters = {
-          require("neotest-go")({ args = { "-count=1" } }),
+          require "neotest-go" { args = { "-count=1" } },
         },
       }
     end,
@@ -249,6 +273,7 @@ return {
         "vimdoc",
         "html",
         "css",
+        "sql",
         "go",
         "gomod",
         "gosum",
