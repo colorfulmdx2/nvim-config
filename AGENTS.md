@@ -10,6 +10,8 @@ NvChad v2.5 и lazy.nvim. Пользователь переходит с GoLand:
 - `lua/plugins/init.lua` — спецификации плагинов, ленивые загрузки и клавиши тестов/DAP.
 - `lua/mappings.lua` — общие клавиши поверх `nvchad.mappings`.
 - `lua/options.lua`, `lua/autocmds.lua` — пользовательские опции и автокоманды.
+- `lua/configs/file_reload.lua` — перечитывание файлов после внешних изменений;
+  буферы с несохранёнными правками пропускать, не сбрасывать через `edit!`.
 - `lua/configs/lspconfig.lua` — LSP на API Neovim 0.11: `vim.lsp.config` / `vim.lsp.enable`.
 - `lua/configs/conform.lua`, `lint.lua` — форматирование и линтинг.
 - `lua/configs/dap.lua` — Go/Delve, панели, маркеры, превью значений и список точек.
