@@ -1,48 +1,61 @@
 return {
   {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    opts = { branch = false },
+    "rmagatti/auto-session",
+    lazy = false,
+    opts = {
+      root_dir = vim.fn.stdpath "state" .. "/auto-session/sessions/",
+      auto_save = true,
+      auto_restore = true,
+      auto_create = true,
+      git_use_branch_name = true,
+      git_auto_restore_on_branch_change = true,
+      args_allow_single_directory = true,
+      args_allow_files_auto_save = false,
+      cwd_change_handling = false,
+      show_auto_restore_notif = true,
+      suppressed_dirs = { vim.fn.expand "~", "/" },
+      session_lens = {
+        picker = "select",
+        load_on_setup = false,
+        session_control = { control_dir = vim.fn.stdpath "state" .. "/auto-session/control/" },
+      },
+    },
     config = function(_, opts)
-      -- Restore file windows, not terminal jobs or plugin-specific options.
-      vim.opt.sessionoptions = { "buffers", "curdir", "folds", "tabpages", "winsize", "winpos" }
-      require("persistence").setup(opts)
+      require("configs.sessions").setup(opts)
     end,
     keys = {
       {
         "<leader>qs",
         function()
-          require("persistence").load()
+          require("configs.sessions").restore()
         end,
         desc = "Session restore current directory",
       },
       {
         "<leader>ql",
         function()
-          require("persistence").load { last = true }
+          require("configs.sessions").restore(true)
         end,
         desc = "Session restore last",
       },
       {
         "<leader>qS",
         function()
-          require("persistence").select()
+          require("configs.sessions").restore "select"
         end,
         desc = "Session select",
       },
       {
         "<leader>qw",
         function()
-          require("persistence").save()
-          vim.notify "Session saved"
+          require("auto-session").save_session()
         end,
         desc = "Session save now",
       },
       {
         "<leader>qd",
         function()
-          require("persistence").stop()
-          vim.notify "Session will not be saved on exit"
+          require("auto-session").disable_auto_save()
         end,
         desc = "Session stop saving",
       },
