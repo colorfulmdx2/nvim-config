@@ -1,5 +1,54 @@
 return {
   {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = { branch = false },
+    config = function(_, opts)
+      -- Restore file windows, not terminal jobs or plugin-specific options.
+      vim.opt.sessionoptions = { "buffers", "curdir", "folds", "tabpages", "winsize", "winpos" }
+      require("persistence").setup(opts)
+    end,
+    keys = {
+      {
+        "<leader>qs",
+        function()
+          require("persistence").load()
+        end,
+        desc = "Session restore current directory",
+      },
+      {
+        "<leader>ql",
+        function()
+          require("persistence").load { last = true }
+        end,
+        desc = "Session restore last",
+      },
+      {
+        "<leader>qS",
+        function()
+          require("persistence").select()
+        end,
+        desc = "Session select",
+      },
+      {
+        "<leader>qw",
+        function()
+          require("persistence").save()
+          vim.notify "Session saved"
+        end,
+        desc = "Session save now",
+      },
+      {
+        "<leader>qd",
+        function()
+          require("persistence").stop()
+          vim.notify "Session will not be saved on exit"
+        end,
+        desc = "Session stop saving",
+      },
+    },
+  },
+  {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
       { "tpope/vim-dadbod", cmd = "DB" },
