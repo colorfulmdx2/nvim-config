@@ -8,7 +8,7 @@ end
 local function show(buffer)
   local window = vim.fn.bufwinid(buffer)
   if window == -1 then
-    vim.cmd "botright 4split"
+    vim.cmd "botright 8split"
     vim.api.nvim_win_set_buf(0, buffer)
   else
     vim.api.nvim_set_current_win(window)
